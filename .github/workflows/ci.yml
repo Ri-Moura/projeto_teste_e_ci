@@ -11,9 +11,9 @@ on:
  release:
     types: [ created ]
  push:
-    branches: [ main, master, dev ]
+    branches: [ '*' ]
  pull_request:
-    branches: [ dev, main, master ]
+    branches: [ '*' ]
 
 jobs:
 
@@ -25,21 +25,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Say hello
       run: |
         echo "Hello, World!"
+    
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
+    
     - name: Install dependencies
       run: |
         make install
+    
     - name: Execute tests
       run: |
         make format lint test
-
+    
+    - name: Pytest
+      run : pytest
+    
+    - name: Upload a Build Artifact
+      uses : actions/upload-artifact@3.1.0
+      with :
+        name : programa
+        path : main
+    
     strategy:
       matrix:
         python-version: [3.8]
+
+
+    docker:
+      needs: build
+      uses : ./.github/workflows/Docker.yml
+      secrets : inherit
+  
