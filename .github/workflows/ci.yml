@@ -57,8 +57,8 @@ jobs:
         python-version: [3.8]
 
 
-    docker:
-      needs: build
-      uses : ./.github/workflows/Docker.yml
-      secrets : inherit
+  docker:
+    needs: build
+    uses : ./.github/workflows/Docker.yml
+    secrets : inherit
   
