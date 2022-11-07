@@ -1,6 +1,3 @@
-# Falconi data template
-Template Falconi para projetos de dados.
-
 # NOME DO PROJETO
 
 ## Introdução
