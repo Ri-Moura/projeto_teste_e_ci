@@ -23,7 +23,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        python-version: [3.8]
     steps:
     - uses: actions/checkout@v3
     - name: Say hello
@@ -52,12 +54,9 @@ jobs:
     # Artifact name
         name: programa
     # A file, directory or wildcard pattern that describes what to upload
-        path: main
+        path: main.py
     
-    strategy:
-      matrix:
-        python-version: [3.8]
-
+    
 
   docker:
     needs: build
