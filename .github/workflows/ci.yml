@@ -39,9 +39,9 @@ jobs:
       run: |
         make install
     
-    - name: Execute tests
-      run: |
-        make format lint test
+    #- name: Execute tests
+    #  run: |
+    #    make format lint test
     
     - name: Pytest
       run : pytest
